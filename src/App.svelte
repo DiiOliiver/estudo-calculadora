@@ -1,6 +1,6 @@
 <script lang="ts">
 	$: document.title = "Olá Svelte";
-	import "../public/style/app.css";
+	import axios from "axios";
 	import {
 		AppBar, Avatar, Alert, Button, Divider, Dialog, Overlay,
 		ProgressCircular, Icon, List, ListItem, MaterialApp,
@@ -10,7 +10,6 @@
 	import Calculadora from "./components/Calculadora.svelte";
 	
 	let mini: boolean = true;
-	let loading: boolean = false;
 	let dialog: boolean;
 	let tipoRedirecionamento: string;
 
@@ -34,7 +33,6 @@
 		return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
 	}
 	function redirecionar(): void {
-		loading = true;
 		dialog = false;
 		const redirecionamentos: Object = {
 			"LINKEDIN": "https://www.linkedin.com/in/diioliiver",
@@ -42,18 +40,11 @@
 			"INSTAGRAM": "https://instagram.com/diioliiver",
 		};
 		const url: string = redirecionamentos[tipoRedirecionamento];
-		const headers = new Headers();
-		const config: Object = {
-			method: 'GET',
-			headers: headers,
-			mode: 'cors',
-			cache: 'default'
-		};
-		const request = new Request(url, config);
-		fetch(request).finally(() => {
-			loading = false;
-			tipoRedirecionamento = "";
-		});
+		window.open(
+			url,
+			'_blank'
+		);
+
 	}
 </script>
 
@@ -126,8 +117,34 @@
 	<main>
 		<Calculadora />
 	</main>
-
-	<Overlay active={loading}>
-		<ProgressCircular color="red" indeterminate size={128} />
-	</Overlay>
 </MaterialApp>
+
+<style scoped>
+	:global(main) {
+    background-image: url("/img/developer.gif");
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 50vh;
+}
+
+:root {
+    --cor-fundo: rgb(77 68 87 / 91%);
+}
+
+:global(.appbar) {
+    width: 100%;
+    z-index: 1;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.text-href {
+    text-decoration: none !important;
+    color: var(--theme-text-primary) !important;
+}
+</style>
