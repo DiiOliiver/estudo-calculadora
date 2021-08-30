@@ -1,0 +1,22 @@
+
+.botao {
+    margin: 0;
+    background-color: rgb(255, 233, 233);
+    border: 1px solid var(--cor-fundo);
+    flex-basis: 25%;
+}
+.duplo {
+    flex-basis: 50%;
+}
+.triplo {
+    flex-basis: 75%;
+}
+
+.operacao {
+    background-color: #3d74c2;
+    color: white;
+}
+.destaque {
+    background-color: #ff4e00;
+    color: white;
+}

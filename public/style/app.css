@@ -1,0 +1,27 @@
+:global(main) {
+    background-image: url("/img/developer.gif");
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-size: 50vh;
+}
+
+:root {
+    --cor-fundo: rgb(77 68 87 / 91%);
+}
+
+:global(.appbar) {
+    width: 100%;
+    z-index: 1;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.text-href {
+    text-decoration: none !important;
+    color: var(--theme-text-primary) !important;
+}
